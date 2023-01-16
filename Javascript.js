@@ -69,7 +69,14 @@ alert( `hello ${"name"}` ); // hello name
 alert( `hello ${name}` ); // hello Ilya
 
 //Alert, Prompt, Confirm
+//alert automatically converts any value to a string to show it. 
 alert("Hello"); //shows message to user wait for them to close it
+let value = true;
+alert(typeof value); // boolean
+value = String(value); // now value is a string "true"
+alert(typeof value); // string
+let num = Number(str); // becomes a number 123
+alert( Boolean("0") ); // true
 
 result = prompt(title, [default]); //2 parameters, default is optional
 let age = prompt('How old are you?', 100);
