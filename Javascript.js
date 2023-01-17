@@ -198,52 +198,200 @@ let str = `
   to maintain and evolve the definition of JavaScript.
 `;
 
+//Objects
+let user = new Object(); // "object constructor" syntax
+let user = {};  // "object literal" syntax
+
+let user = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
+};
+
+// get property values of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+delete user.age;
+
+let user = { name: "John", age: 30 };
+alert( "age" in user ); // true, user.age exists. keyword in
+alert( "blabla" in user ); // false, user.blabla doesn't exist
+
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+//for in looop used in ojects loop through all porperties
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // values for the keys
+  alert( user[key] ); // John, 30, true
+}
+
+//Object Order
+let codes = {
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
+  // ..,
+  "1": "USA"
+};
+for (let code in codes) {
+  alert(code); // 1, 41, 44, 49
+}
+
+let user = {
+  name: "John",
+  surname: "Smith"
+};
+user.age = 25; // add one more
+// non-integer properties are listed in the creation order
+for (let prop in user) {
+  alert( prop ); // name, surname, age
+}
+//fixes order for number inlcuding +
+let codes = {
+  "+49": "Germany",
+  "+41": "Switzerland",
+  "+44": "Great Britain",
+  // ..,
+  "+1": "USA"
+};
+for (let code in codes) {
+  alert( +code ); // 49, 41, 44, 1
+}
+
+//empty object
+let user={};
+user.name="John"; //adds john yo name property
+user.name="Pete";
+delete user.name; //removes property name
+
+let schedule = {};
+function isEmpty(obj){
+ for(let key in obj){ //if somethign in obj return false;
+    return false;   
+ }
+    return true;
+}
+alert( isEmpty(schedule) ); // true
+schedule["8:30"] = "get up";
+alert( isEmpty(schedule) ); // fals
+
+let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130
+}
+let sum=0;
+for(let key in salaries){
+ sum +=salaries[key];   
+}
 
 
+// before the call
+let menu = {
+  width: 200,
+  height: 300,
+  title: "My menu"
+};
+function multiplyNumeric(obj){
+ for(let key in obj){
+  if(typeof obj[key]=='number')
+      obj[key]*=2;
+ }
+}
+multiplyNumeric(menu);
+// after the call
+menu = {
+  width: 400,
+  height: 600,
+  title: "My menu"
+};
 
+//A variable assigned to an object stores not the object itself, but its “address in memory” – in other words “a reference” to it.
+//When an object variable is copied, the reference is copied, but the object itself is not duplicated.
+let user = { name: "John" };
+let admin = user; // copy the reference
 
+let a = {};
+let b = a; // copy the reference
+alert( a == b ); // true, both variables reference the same object
+alert( a === b ); // true
 
+let user = { name: "John" };
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2); //assign keyword used to add to object
+// now user = { name: "John", canView: true, canEdit: true }
+alert(user.name); // John
+alert(user.canView); // true
+alert(user.canEdit); // true
 
+let clone = structuredClone(user); //structuredCLone clones all properties of an obejct into new object
 
+//When we write our code using objects to represent entities, that’s called object-oriented programming, in short: “OOP”.
+//this keyword
+let user = {
+  name: "John",
+  age: 30,
+  sayHi() {
+    alert(this.name); // "this" is the "current object"
+  }
+};
 
+let user = {
+  firstName: "Ilya",
+  sayHi() {
+    let arrow = () => alert(this.firstName);
+    arrow();
+  }
+};
 
+//calculator 
+let calculator = {
+  sum() {
+   return this.a+this.b;
+  },
+  mul() {
+   return this.a*this.b;
+  },
+  read() {
+   this.a=+propmt('a?',0);
+   this.a=+propmt('b?',0);
+  }
+};
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
 
+let user = new User("Jack"); //CONSTRUCTOR FUNCTION
+When a function is executed with new, it does the following steps:
+A new empty object is created and assigned to this.
+The function body executes. Usually it modifies this, adds new properties to it.
+The value of this is returned.
 
+function User(name) {
+  // this = {};  (implicitly)
+  // add properties to this
+  this.name = name;
+  this.isAdmin = false;
+  // return this;  (implicitly)
+}
 
+let user = new User("Jack") //same as
+let user = {
+  name: "Jack",
+  isAdmin: false
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function SmallUser() {
+  this.name = "John";
+  return; // <-- returns this
+}
+alert( new SmallUser().name );  // John
 
 
 
