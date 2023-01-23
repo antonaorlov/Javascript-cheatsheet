@@ -424,6 +424,84 @@ var newsfeed = [
 	}
 ];
 
+HTML DOm standart object model, programming interface defines
+	HTML elemnts as objects
+	properties of HTML elements
+	methods to access HTML elements
+	events for all HTML elements
+HTML Com standatd for how to get, change,a dd delete HTML elements
+
+
+<p id="demo"></p>
+<script>
+document.getElementByID("demo").innerHTML = "Hello World"; //chnages p element to Hello World
+</script>
+
+const element = document.getElementByID used to find ID of element
+
+document.getElementByTagName finds element by tag name
+
+document.getElementsByClassName finds elements by class name 
+
+element.innerHTML property used to get or replace html elements
+
+element.attribute changes attribute value of html element 
+
+element.style.property changes style of HTML element
+
+element.setAttribute(attribute, value) changes attribute value of HTMl element
+
+document.createElement(element) 	Create an HTML element
+
+document.removeChild(element) 	Remove an HTML element
+
+document.appendChild(element) 	Add an HTML element
+
+document.replaceChild(new, old) 	Replace an HTML element
+
+document.write(text) 	Write into the HTML output stream
+
+document.getElementById(id).onclick = function(){code}
+
+document.querySelectorAll("p.intro") returns all html elements match specified css selector
+
+//This example finds the form element with id="frm1", in the forms collection, and displays all element values:
+const x = document.forms["frm1"];
+let text = "";
+for (let i = 0; i < x.length; i++) {
+  text += x.elements[i].value + "<br>";
+}
+document.getElementById("demo").innerHTML = text; 
+
+document.getElementById("p1").innerHTML = "New text!";
+
+document.getElementById(id).attribute = new value
+document.getElementById("myImage").src = "landscape.jpg";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
